@@ -103,7 +103,7 @@
         
         <div class="content">
             <div class="input-group">
-                <input type="text" id="product-code" placeholder="输入产品编码" maxlength="17">
+                <input type="text" id="product-code" placeholder="输入编码" maxlength="17">
             </div>
             
             <button class="btn" id="verify-btn">验证</button>
