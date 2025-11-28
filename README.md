@@ -121,40 +121,33 @@
             const resultDiv = document.getElementById('result');
             const resultText = document.getElementById('result-text');
             
-            // 系列定义 - 在这里添加新的系列和变体
+            // 特殊编码映射 - 在这里添加特殊规则
+            const specialCodes = {
+                '20240609700102521': '阿某家的劣',
+                // 可以添加更多特殊编码
+                // '20240609700101521': '阿某家的吠',
+                // '20251027700101001': '特殊版的呦'
+            };
+
+            // 系列定义
             const seriesMap = {
                 '20240609': { 
                     name: '吠/劣', 
                     variants: {
-                        '01': { name: '吠', quantityLimit: 25 },  // 吠最多25个
-                        '02': { name: '劣', quantityLimit: 18 }   // 劣最多18个
+                        '01': { name: '吠', quantityLimit: 25 },
+                        '02': { name: '劣', quantityLimit: 18 }
                     }
                 },
                 '20251027': { 
                     name: '呦/睨', 
                     variants: {
-                        '01': { name: '呦', quantityLimit: 15 },  // 呦最多15个
-                        '02': { name: '睨', quantityLimit: 20 }   // 睨最多20个
-                    }
-                },
-                '20240809': { 
-                    name: '阿某家', 
-                    variants: {
-                        '01': { name: '阿某家的吠', quantityLimit: 30 },
-                        '02': { name: '阿某家的劣', quantityLimit: 25 }   // 阿某家的劣最多25个
+                        '01': { name: '呦', quantityLimit: 15 },
+                        '02': { name: '睨', quantityLimit: 20 }
                     }
                 }
-                // 在这里添加新的系列，格式：
-                // 'YYYYMMDD': { 
-                //     name: '系列名称', 
-                //     variants: {
-                //         '01': { name: '变体1名称', quantityLimit: 数量 },
-                //         '02': { name: '变体2名称', quantityLimit: 数量 }
-                //     }
-                // }
             };
 
-            // 肤色映射 - 在这里添加新的肤色
+            // 肤色映射
             const skinToneMap = {
                 '1': 'mia白',
                 '2': 'dd半白', 
@@ -163,7 +156,6 @@
                 '5': '灰肌',
                 '6': '牡丹白',
                 '7': 'mia粉'
-                // 在这里添加新的肤色编码，格式：'编码': '肤色名称'
             };
 
             verifyBtn.addEventListener('click', function() {
@@ -190,6 +182,15 @@
             });
             
             function validateProductCode(code) {
+                // 先检查是否是特殊编码
+                if (specialCodes[code]) {
+                    return {
+                        valid: true,
+                        variantInfo: { name: specialCodes[code] }
+                    };
+                }
+
+                // 下面是原有的正常验证逻辑
                 const seriesCode = code.substring(0, 8);
                 const validationCode = code.substring(8, 11);
                 const skinTone = code.substring(11, 12);
