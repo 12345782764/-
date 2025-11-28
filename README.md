@@ -136,6 +136,13 @@
                         '01': { name: '呦', quantityLimit: 15 },  // 呦最多15个
                         '02': { name: '睨', quantityLimit: 20 }   // 睨最多20个
                     }
+                },
+                '20240809': { 
+                    name: '阿某家', 
+                    variants: {
+                        '01': { name: '阿某家的吠', quantityLimit: 30 },
+                        '02': { name: '阿某家的劣', quantityLimit: 25 }   // 阿某家的劣最多25个
+                    }
                 }
                 // 在这里添加新的系列，格式：
                 // 'YYYYMMDD': { 
@@ -176,7 +183,7 @@
                 
                 if (validationResult.valid) {
                     const dollName = validationResult.variantInfo.name;
-                    showResult(` ${dollName}加入了主人的空间`, 'valid');
+                    showResult(`这是${dollName}`, 'valid');
                 } else {
                     showResult('undefined', 'undefined');
                 }
